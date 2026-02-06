@@ -915,7 +915,7 @@ def chain(
 flat_map = chain
 # unnamed ends here
 
-# [[file:index.org::15381]]
+# [[file:index.org::15346]]
 @overload
 def switch_map(
   fn: Callable[[T], AsyncIterable[U]]
@@ -984,7 +984,7 @@ def switch_map(
   return _switch_map(stream)
 # unnamed ends here
 
-# [[file:index.org::15853]]
+# [[file:index.org::15818]]
 async def latest(*streams: AsyncIterable[T]) -> AsyncIterator[Tuple[T, ...]]:
   """Combines streams, emitting tuple of latest values when any emits."""
   latest_values: List[Optional[T]] = [None] * len(streams)
@@ -1019,7 +1019,7 @@ async def latest(*streams: AsyncIterable[T]) -> AsyncIterator[Tuple[T, ...]]:
       task.cancel()
 # unnamed ends here
 
-# [[file:index.org::16249]]
+# [[file:index.org::16214]]
 async def apply_latest(
   fn_stream: AsyncIterable[Callable[[T], U]],
   value_stream: AsyncIterable[T]
@@ -1029,7 +1029,7 @@ async def apply_latest(
     yield fn(value)
 # unnamed ends here
 
-# [[file:index.org::16548]]
+# [[file:index.org::16513]]
 @overload
 def until_stream(
   stop_stream: AsyncIterable[Any]
@@ -1068,7 +1068,7 @@ def until_stream(
   return _until_stream(source_stream)
 # unnamed ends here
 
-# [[file:index.org::16917]]
+# [[file:index.org::16882]]
 @overload
 def since_stream(
   start_stream: AsyncIterable[Any]
@@ -1106,7 +1106,7 @@ def since_stream(
   return _since_stream(source_stream)
 # unnamed ends here
 
-# [[file:index.org::17282]]
+# [[file:index.org::17247]]
 @overload
 def buffer(size: int) -> Callable[[AsyncIterable[T]], AsyncIterator[List[T]]]: ...
 @overload
@@ -1129,7 +1129,7 @@ def buffer(size: int, stream: Optional[AsyncIterable[T]] = None):
   return _buffer(stream)
 # unnamed ends here
 
-# [[file:index.org::17683]]
+# [[file:index.org::17648]]
 @overload
 def buffer_time(seconds: float) -> Callable[[AsyncIterable[T]], AsyncIterator[List[T]]]: ...
 @overload
@@ -1179,7 +1179,7 @@ def buffer_time(seconds: float, stream: Optional[AsyncIterable[T]] = None):
   return _buffer_time(stream)
 # unnamed ends here
 
-# [[file:index.org::18167]]
+# [[file:index.org::18132]]
 @overload
 def window(size: int) -> Callable[[AsyncIterable[T]], AsyncIterator[AsyncIterable[T]]]: ...
 @overload
@@ -1199,7 +1199,7 @@ def window(size: int, stream: Optional[AsyncIterable[T]] = None):
   return _window(stream)
 # unnamed ends here
 
-# [[file:index.org::18602]]
+# [[file:index.org::18567]]
 @overload
 def eager(buffer_size: int) -> Callable[[AsyncIterable[T]], AsyncIterator[T]]: ...
 @overload
@@ -1275,7 +1275,7 @@ def eager_now(buffer_size: int, stream: AsyncIterable[T]) -> AsyncIterable[T]:
   return iterate()
 # unnamed ends here
 
-# [[file:index.org::19175]]
+# [[file:index.org::19140]]
 class ReplaySubject(Generic[T]):
   """A multicasting subject that replays buffered values to new subscribers."""
 
@@ -1344,7 +1344,7 @@ class ReplaySubject(Generic[T]):
     return len(self._subscribers)
 # unnamed ends here
 
-# [[file:index.org::19596]]
+# [[file:index.org::19561]]
 def replay(buffer_size: int, source: AsyncIterable[T]) -> AsyncIterable[T]:
   """Makes a stream consumable by multiple consumers by buffering values."""
   subject = ReplaySubject[T](buffer_size)
@@ -1371,13 +1371,13 @@ def replay(buffer_size: int, source: AsyncIterable[T]) -> AsyncIterable[T]:
   return ReplayIterable()
 # unnamed ends here
 
-# [[file:index.org::20118]]
+# [[file:index.org::20083]]
 def share(source: AsyncIterable[T]) -> AsyncIterable[T]:
   """Shares a stream without buffering."""
   return replay(0, source)
 # unnamed ends here
 
-# [[file:index.org::20495]]
+# [[file:index.org::20460]]
 def replay_factory(
   buffer_size: int,
   source: AsyncIterable[T]
@@ -1406,7 +1406,7 @@ def replay_factory(
   return factory
 # unnamed ends here
 
-# [[file:index.org::20885]]
+# [[file:index.org::20850]]
 async def replay_stream(
   buffer_size: int,
   source: AsyncIterable[T]
@@ -1417,7 +1417,7 @@ async def replay_stream(
     yield factory()
 # unnamed ends here
 
-# [[file:index.org::21655]]
+# [[file:index.org::21620]]
 __all__ = [
   # Creation
   'just', 'of', 'from_promise', 'from_iter', 'periodic', 'empty', 'never',
