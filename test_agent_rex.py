@@ -413,7 +413,7 @@ class TestRetry:
     assert result == [1, 2, 3]
 # unnamed ends here
 
-# [[file:index.org::14104]]
+# [[file:index.org::14105]]
 class TestMerge:
   async def test_merges_streams(self):
     async def slow_stream():
@@ -429,7 +429,7 @@ class TestMerge:
     assert sorted(result) == [1, 2, 3]
 # unnamed ends here
 
-# [[file:index.org::14544]]
+# [[file:index.org::14545]]
 class TestMergeAll:
   async def test_merges_stream_of_streams(self):
     async def stream_of_streams():
@@ -440,7 +440,7 @@ class TestMergeAll:
     assert sorted(result) == [1, 2, 3, 4]
 # unnamed ends here
 
-# [[file:index.org::14876]]
+# [[file:index.org::14877]]
 class TestChain:
   async def test_maps_and_merges(self):
     result = await collect(pipe(
@@ -450,11 +450,11 @@ class TestChain:
     assert sorted(result) == [1, 2, 10, 20]
 # unnamed ends here
 
-# [[file:index.org::15417]]
+# [[file:index.org::15407]]
 
 # unnamed ends here
 
-# [[file:index.org::15855]]
+# [[file:index.org::15845]]
 class TestLatest:
   async def test_combines_latest(self):
     async def stream_a():
@@ -475,19 +475,19 @@ class TestLatest:
     assert len(result) >= 1
 # unnamed ends here
 
-# [[file:index.org::16226]]
+# [[file:index.org::16216]]
 
 # unnamed ends here
 
-# [[file:index.org::16554]]
+# [[file:index.org::16544]]
 
 # unnamed ends here
 
-# [[file:index.org::16922]]
+# [[file:index.org::16912]]
 
 # unnamed ends here
 
-# [[file:index.org::17272]]
+# [[file:index.org::17265]]
 class TestBuffer:
   async def test_buffers_values(self):
     result = await collect(pipe(
@@ -497,15 +497,15 @@ class TestBuffer:
     assert result == [[1, 2], [3, 4], [5]]
 # unnamed ends here
 
-# [[file:index.org::17700]]
+# [[file:index.org::17693]]
 
 # unnamed ends here
 
-# [[file:index.org::18154]]
+# [[file:index.org::18147]]
 
 # unnamed ends here
 
-# [[file:index.org::18645]]
+# [[file:index.org::18638]]
 class TestEager:
   async def test_prefetches_values(self):
     events = []
@@ -525,7 +525,7 @@ class TestEager:
     assert result == [0, 1, 2]
 # unnamed ends here
 
-# [[file:index.org::19211]]
+# [[file:index.org::19204]]
 class TestReplaySubject:
   async def test_replays_to_new_subscribers(self):
     subject = ReplaySubject[int](buffer_size=10)
@@ -544,7 +544,7 @@ class TestReplaySubject:
     assert subject.get_buffer() == [2, 3]
 # unnamed ends here
 
-# [[file:index.org::19590]]
+# [[file:index.org::19583]]
 class TestReplay:
   async def test_replays_buffered(self):
     source = from_iter([1, 2, 3])
@@ -555,7 +555,7 @@ class TestReplay:
     assert result1 == [1, 2, 3]
 # unnamed ends here
 
-# [[file:index.org::20091]]
+# [[file:index.org::20084]]
 class TestShare:
   async def test_shares_without_buffer(self):
     source = from_iter([1, 2, 3])
@@ -565,21 +565,21 @@ class TestShare:
     assert result == [1, 2, 3]
 # unnamed ends here
 
-# [[file:index.org::20491]]
+# [[file:index.org::20484]]
 
 # unnamed ends here
 
-# [[file:index.org::20863]]
+# [[file:index.org::20856]]
 
 # unnamed ends here
 
-# [[file:index.org::23267]]
+# [[file:index.org::23260]]
 async def collect(stream: AsyncIterable[T]) -> List[T]:
   """Collect all values from a stream into a list."""
   return [value async for value in stream]
 # unnamed ends here
 
-# [[file:index.org::23284]]
+# [[file:index.org::23277]]
 async def collect_n(n: int, stream: AsyncIterable[T]) -> List[T]:
   """Collect exactly N values from a stream."""
   values: List[T] = []
@@ -590,7 +590,7 @@ async def collect_n(n: int, stream: AsyncIterable[T]) -> List[T]:
   return values
 # unnamed ends here
 
-# [[file:index.org::23306]]
+# [[file:index.org::23299]]
 async def drain(stream: AsyncIterable[T]) -> None:
   """Consume all values from a stream, discarding them."""
   async for _ in stream:

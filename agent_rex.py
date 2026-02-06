@@ -804,7 +804,7 @@ def retry(
   return _retry(stream_factory)
 # unnamed ends here
 
-# [[file:index.org::14069]]
+# [[file:index.org::14070]]
 async def merge(*streams: AsyncIterable[T]) -> AsyncIterator[T]:
   """Merges multiple streams into one, emitting values as they arrive."""
   async def consume_stream(
@@ -837,7 +837,7 @@ async def merge(*streams: AsyncIterable[T]) -> AsyncIterator[T]:
       task.cancel()
 # unnamed ends here
 
-# [[file:index.org::14496]]
+# [[file:index.org::14497]]
 async def merge_all(stream_of_streams: AsyncIterable[AsyncIterable[T]]) -> AsyncIterator[T]:
   """Flattens a stream of streams by merging them concurrently."""
   queue: asyncio.Queue[Tuple[Optional[T], bool, Optional[Exception]]] = asyncio.Queue()
@@ -883,7 +883,7 @@ async def merge_all(stream_of_streams: AsyncIterable[AsyncIterable[T]]) -> Async
       task.cancel()
 # unnamed ends here
 
-# [[file:index.org::14842]]
+# [[file:index.org::14843]]
 @overload
 def chain(
   fn: Callable[[T], AsyncIterable[U]]
@@ -915,7 +915,7 @@ def chain(
 flat_map = chain
 # unnamed ends here
 
-# [[file:index.org::15346]]
+# [[file:index.org::15336]]
 @overload
 def switch_map(
   fn: Callable[[T], AsyncIterable[U]]
@@ -984,7 +984,7 @@ def switch_map(
   return _switch_map(stream)
 # unnamed ends here
 
-# [[file:index.org::15818]]
+# [[file:index.org::15808]]
 async def latest(*streams: AsyncIterable[T]) -> AsyncIterator[Tuple[T, ...]]:
   """Combines streams, emitting tuple of latest values when any emits."""
   latest_values: List[Optional[T]] = [None] * len(streams)
@@ -1019,7 +1019,7 @@ async def latest(*streams: AsyncIterable[T]) -> AsyncIterator[Tuple[T, ...]]:
       task.cancel()
 # unnamed ends here
 
-# [[file:index.org::16214]]
+# [[file:index.org::16204]]
 async def apply_latest(
   fn_stream: AsyncIterable[Callable[[T], U]],
   value_stream: AsyncIterable[T]
@@ -1029,7 +1029,7 @@ async def apply_latest(
     yield fn(value)
 # unnamed ends here
 
-# [[file:index.org::16513]]
+# [[file:index.org::16503]]
 @overload
 def until_stream(
   stop_stream: AsyncIterable[Any]
@@ -1068,7 +1068,7 @@ def until_stream(
   return _until_stream(source_stream)
 # unnamed ends here
 
-# [[file:index.org::16882]]
+# [[file:index.org::16872]]
 @overload
 def since_stream(
   start_stream: AsyncIterable[Any]
@@ -1106,7 +1106,7 @@ def since_stream(
   return _since_stream(source_stream)
 # unnamed ends here
 
-# [[file:index.org::17247]]
+# [[file:index.org::17240]]
 @overload
 def buffer(size: int) -> Callable[[AsyncIterable[T]], AsyncIterator[List[T]]]: ...
 @overload
@@ -1129,7 +1129,7 @@ def buffer(size: int, stream: Optional[AsyncIterable[T]] = None):
   return _buffer(stream)
 # unnamed ends here
 
-# [[file:index.org::17648]]
+# [[file:index.org::17641]]
 @overload
 def buffer_time(seconds: float) -> Callable[[AsyncIterable[T]], AsyncIterator[List[T]]]: ...
 @overload
@@ -1179,7 +1179,7 @@ def buffer_time(seconds: float, stream: Optional[AsyncIterable[T]] = None):
   return _buffer_time(stream)
 # unnamed ends here
 
-# [[file:index.org::18132]]
+# [[file:index.org::18125]]
 @overload
 def window(size: int) -> Callable[[AsyncIterable[T]], AsyncIterator[AsyncIterable[T]]]: ...
 @overload
@@ -1199,7 +1199,7 @@ def window(size: int, stream: Optional[AsyncIterable[T]] = None):
   return _window(stream)
 # unnamed ends here
 
-# [[file:index.org::18567]]
+# [[file:index.org::18560]]
 @overload
 def eager(buffer_size: int) -> Callable[[AsyncIterable[T]], AsyncIterator[T]]: ...
 @overload
@@ -1275,7 +1275,7 @@ def eager_now(buffer_size: int, stream: AsyncIterable[T]) -> AsyncIterable[T]:
   return iterate()
 # unnamed ends here
 
-# [[file:index.org::19140]]
+# [[file:index.org::19133]]
 class ReplaySubject(Generic[T]):
   """A multicasting subject that replays buffered values to new subscribers."""
 
@@ -1344,7 +1344,7 @@ class ReplaySubject(Generic[T]):
     return len(self._subscribers)
 # unnamed ends here
 
-# [[file:index.org::19561]]
+# [[file:index.org::19554]]
 def replay(buffer_size: int, source: AsyncIterable[T]) -> AsyncIterable[T]:
   """Makes a stream consumable by multiple consumers by buffering values."""
   subject = ReplaySubject[T](buffer_size)
@@ -1371,13 +1371,13 @@ def replay(buffer_size: int, source: AsyncIterable[T]) -> AsyncIterable[T]:
   return ReplayIterable()
 # unnamed ends here
 
-# [[file:index.org::20083]]
+# [[file:index.org::20076]]
 def share(source: AsyncIterable[T]) -> AsyncIterable[T]:
   """Shares a stream without buffering."""
   return replay(0, source)
 # unnamed ends here
 
-# [[file:index.org::20460]]
+# [[file:index.org::20453]]
 def replay_factory(
   buffer_size: int,
   source: AsyncIterable[T]
@@ -1406,7 +1406,7 @@ def replay_factory(
   return factory
 # unnamed ends here
 
-# [[file:index.org::20850]]
+# [[file:index.org::20843]]
 async def replay_stream(
   buffer_size: int,
   source: AsyncIterable[T]
@@ -1417,7 +1417,7 @@ async def replay_stream(
     yield factory()
 # unnamed ends here
 
-# [[file:index.org::21620]]
+# [[file:index.org::21613]]
 __all__ = [
   # Creation
   'just', 'of', 'from_promise', 'from_iter', 'periodic', 'empty', 'never',
