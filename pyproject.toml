@@ -8,7 +8,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "agent-rex"
-version = "0.1.1"
+version = "0.0.0-nightly.20260207"
 description = "An Async Generator/Iterator Based FRP-Like Library for Python"
 requires-python = ">=3.10"
 license = "MIT"
@@ -50,7 +50,7 @@ asyncio_mode = "auto"
 testpaths = ["."]
 
 [tool.mypy]
-python_version = "0.1.1"
+python_version = "0.0.0-nightly.20260207"
 warn_return_any = true
 warn_unused_configs = true
 strict = true
